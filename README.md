@@ -36,7 +36,7 @@ Công Nghệ
 
 ---
 
-## 🧑‍💻 Khánh - Frontend chính
+## 🧑‍💻Quý - Frontend chính
 
 **Nhiệm vụ:**
 
@@ -50,7 +50,7 @@ Công Nghệ
 
 ---
 
-## 🧑‍💻 Quý - Frontend phụ
+## 🧑‍💻 Khánh - Frontend phụ
 
 **Nhiệm vụ:**
 
