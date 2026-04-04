@@ -1,96 +1,59 @@
-﻿# Clothes-SpringBoot-Angular-Frontend
-# 👥 Phân công công việc dự án Website bán quần áo
+# ClothesUi
 
-Dự án: Website bán quần áo
-Số lượng thành viên: 6 người
-Công Nghệ
-* Frontend: Angular
-* Backend: Java Spring Boot
-* Database: MySQL
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
 
----
+## Development server
 
-## 🧑‍💻 Huy Backend chính
+To start a local development server, run:
 
-**Nhiệm vụ:**
+```bash
+ng serve
+```
 
-* Thiết kế kiến trúc hệ thống (MVC / REST API)
-* Xây dựng Backend chính (API sản phẩm, người dùng, đơn hàng)
-* Xử lý Authentication & Authorization (Login, Register)
-* Review code của team
-* Quản lý tiến độ dự án (Git, task)
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
----
+## Code scaffolding
 
-## 🧑‍💻 Sang - Backend phụ / API
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-**Nhiệm vụ:**
+```bash
+ng generate component component-name
+```
 
-* Xây dựng API:
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-  * Giỏ hàng (Cart)
-  * Thanh toán (Checkout)
-  * Quản lý đơn hàng (Order)
-* Tối ưu hiệu năng API
-* Viết tài liệu API (Swagger / Postman)
+```bash
+ng generate --help
+```
 
----
+## Building
 
-## 🧑‍💻Quý - Frontend chính
+To build the project run:
 
-**Nhiệm vụ:**
+```bash
+ng build
+```
 
-* Xây dựng giao diện chính:
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-  * Trang chủ
-  * Trang danh sách sản phẩm
-  * Trang chi tiết sản phẩm
-* Gọi API từ Backend
-* Xử lý state (nếu dùng Angular)
+## Running unit tests
 
----
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
-## 🧑‍💻 Khánh - Frontend phụ
+```bash
+ng test
+```
 
-**Nhiệm vụ:**
+## Running end-to-end tests
 
-* Xây dựng các trang:
+For end-to-end (e2e) testing, run:
 
-  * Đăng nhập / đăng ký
-  * Giỏ hàng
-  * Thanh toán
-* Validate form (client-side)
-* Responsive (mobile, tablet)
+```bash
+ng e2e
+```
 
----
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## 🎨 Thành - UI/UX Designer
+## Additional Resources
 
-**Nhiệm vụ:**
-
-* Thiết kế giao diện bằng Figma
-* Xây dựng style guide (màu sắc, font, button)
-* Đảm bảo UX:
-
-  * Dễ dùng
-  * Logic mua hàng rõ ràng
-* Hỗ trợ frontend về layout
-
----
-
-## 🧪 Tiến - Tester / DevOps
-
-**Nhiệm vụ:**
-
-* Test chức năng (manual test)
-* Viết test case:
-
-  * Đăng nhập
-  * Mua hàng
-  * Thanh toán
-* Fix bug cùng team
-* Deploy:
-
-  * Backend (Render / Railway / VPS)
-  * Frontend (Vercel / Netlify)
-* Quản lý Git (branch, merge)
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
