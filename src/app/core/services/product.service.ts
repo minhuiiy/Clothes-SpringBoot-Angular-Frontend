@@ -10,13 +10,13 @@ const API_URL = 'http://localhost:8081/api/products';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProducts(options: { keyword?: string; page?: number; size?: number; sort?: string; categoryId?: number } = {}): Observable<any> {
+  getProducts(options: { keyword?: string; page?: number; size?: number; categoryId?: number } = {}): Observable<any> {
     const page = options.page ?? 0;
     const size = options.size ?? 10;
     let params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
-      .set('sort', options.sort || 'newest');
+      .set('page', (filters.page || 0).toString())
+      .set('size', (filters.size || 10).toString())
+      .set('sort', filters.sort || 'newest');
 
     if (options.keyword) {
       params = params.set('keyword', options.keyword);

@@ -25,17 +25,6 @@ export class ProductList implements OnInit {
   totalItems = 0;
   keyword = '';
   categoryId: number | null = null;
-  isFilterOpen = false;
-  sort = 'newest';
-  filters: any = {
-    categoryId: null,
-    brandId: null,
-    minPrice: null,
-    maxPrice: null,
-    color: null,
-    isPromoted: false,
-    isFeatured: false
-  };
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {}
 
