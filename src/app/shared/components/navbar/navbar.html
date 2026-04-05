@@ -3,45 +3,94 @@
     <div class="logo">
       <a routerLink="/">TrendyBox</a>
     </div>
-    
+
     <ul class="nav-links">
       <li><a routerLink="/products" routerLinkActive="active">Sản phẩm mới <span class="caret">▼</span></a></li>
-      <li><a routerLink="/category/nam" routerLinkActive="active">Nam <span class="caret">▼</span></a></li>
-      <li><a routerLink="/category/nu" routerLinkActive="active">Nữ <span class="caret">▼</span></a></li>
-      <li><a routerLink="/category/phu-kien" routerLinkActive="active">Phụ kiện <span class="caret">▼</span></a></li>
+      <li class="nav-item-dropdown" (mouseenter)="toggleDropdown('nam')" (mouseleave)="closeDropdown()">
+        <a href="javascript:void(0)" [class.active]="openDropdown === 'nam'">Nam <span class="caret">▼</span></a>
+        <div class="dropdown" *ngIf="openDropdown === 'nam'">
+          <ng-container *ngIf="menu; else loadingMenu">
+            <div class="dropdown-section" *ngFor="let cat of menu.nam">
+              <div class="dropdown-title" (click)="onSelectCategory(cat)">{{ cat.name }}</div>
+              <a class="dropdown-link" *ngFor="let child of (cat.children || [])" href="javascript:void(0)" (click)="onSelectCategory(child)">
+                {{ child.name }}
+              </a>
+            </div>
+          </ng-container>
+        </div>
+      </li>
+
+      <li class="nav-item-dropdown" (mouseenter)="toggleDropdown('nu')" (mouseleave)="closeDropdown()">
+        <a href="javascript:void(0)" [class.active]="openDropdown === 'nu'">Nữ <span class="caret">▼</span></a>
+        <div class="dropdown" *ngIf="openDropdown === 'nu'">
+          <ng-container *ngIf="menu; else loadingMenu">
+            <div class="dropdown-section" *ngFor="let cat of menu.nu">
+              <div class="dropdown-title" (click)="onSelectCategory(cat)">{{ cat.name }}</div>
+              <a class="dropdown-link" *ngFor="let child of (cat.children || [])" href="javascript:void(0)" (click)="onSelectCategory(child)">
+                {{ child.name }}
+              </a>
+            </div>
+          </ng-container>
+        </div>
+      </li>
+
+      <li class="nav-item-dropdown" (mouseenter)="toggleDropdown('phuKien')" (mouseleave)="closeDropdown()">
+        <a href="javascript:void(0)" [class.active]="openDropdown === 'phuKien'">Phụ kiện <span class="caret">▼</span></a>
+        <div class="dropdown" *ngIf="openDropdown === 'phuKien'">
+          <ng-container *ngIf="menu; else loadingMenu">
+            <div class="dropdown-section" *ngFor="let cat of menu.phuKien">
+              <div class="dropdown-title" (click)="onSelectCategory(cat)">{{ cat.name }}</div>
+              <a class="dropdown-link" *ngFor="let child of (cat.children || [])" href="javascript:void(0)" (click)="onSelectCategory(child)">
+                {{ child.name }}
+              </a>
+            </div>
+          </ng-container>
+        </div>
+      </li>
       <li><a routerLink="/brands" routerLinkActive="active">Thương hiệu <span class="caret">▼</span></a></li>
     </ul>
 
     <div class="nav-icons">
-      <a href="#"><span title="Location">📍</span></a>
-      <div class="search-box" *ngIf="isSearchActive">
-        <input 
-          type="text" 
-          placeholder="Tìm kiếm..." 
-          [(ngModel)]="searchKeyword" 
-          (keyup)="doSearch($event)"
-          (blur)="isSearchActive = false"
-          autofocus
-        >
+      <a href="#"><span title="Location"><i class="fa-solid fa-location-dot"></i></span></a>
+      <div class="search-container">
+        <a href="javascript:void(0)" (click)="toggleSearch()"><span title="Search"><i
+              class="fa-solid fa-magnifying-glass"></i></span></a>
+
+        <div class="search-dropdown" *ngIf="isSearchActive">
+          <div class="search-arrow"></div>
+          <div class="search-title">TÌM KIẾM</div>
+          <div class="search-input-wrapper">
+            <input type="text" placeholder="Tìm kiếm sản phẩm..." [(ngModel)]="searchKeyword" (keyup)="doSearch($event)"
+              autofocus>
+            <span class="search-submit-icon" (click)="doSearch({key: 'Enter'})"><i
+                class="fa-solid fa-magnifying-glass"></i></span>
+          </div>
+        </div>
       </div>
-      <a href="javascript:void(0)" (click)="toggleSearch()"><span title="Search">🔍</span></a>
-      
+
       <!-- Logic Profile -->
       <ng-container *ngIf="!currentUser; else loggedInTpl">
-        <a routerLink="/auth/login"><span title="Đăng nhập" style="font-size: 0.9rem; font-weight: bold; margin-left: 5px;">Đăng nhập</span></a>
+        <a routerLink="/auth/login"><span title="Đăng nhập"
+            style="font-size: 0.9rem; font-weight: bold; margin-left: 5px;">Đăng nhập</span></a>
       </ng-container>
-      
+
       <ng-template #loggedInTpl>
         <div class="user-menu" style="display: flex; gap: 10px; align-items: center;">
-          <span style="font-size: 0.9rem; font-weight: bold; margin-left: 5px;">Hi, {{ currentUser.fullName || currentUser.username }}</span>
-          <a href="javascript:void(0)" (click)="logout()" title="Đăng xuất" style="font-size: 0.8rem; color: var(--text-secondary);">[Thoát]</a>
+          <span style="font-size: 0.9rem; font-weight: bold; margin-left: 5px;">Hi, {{ currentUser.fullName ||
+            currentUser.username }}</span>
+          <a href="javascript:void(0)" (click)="logout()" title="Đăng xuất"
+            style="font-size: 0.8rem; color: var(--text-secondary);">[Thoát]</a>
         </div>
       </ng-template>
 
       <a routerLink="/cart" class="cart-icon">
-        <span title="Cart">🛒</span>
-        <span class="cart-badge">0</span>
+        <span title="Cart"><i class="fa-solid fa-cart-shopping"></i></span>
+        <span class="cart-badge" *ngIf="(cartCount$ | async) as count">{{ count }}</span>
       </a>
     </div>
   </div>
 </nav>
+
+<ng-template #loadingMenu>
+  <div class="dropdown-loading">Đang tải...</div>
+</ng-template>
