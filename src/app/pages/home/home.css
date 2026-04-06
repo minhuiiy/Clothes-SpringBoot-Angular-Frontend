@@ -149,7 +149,6 @@
 }
 
 .collection-card {
-  group: hover;
   cursor: pointer;
 }
 
