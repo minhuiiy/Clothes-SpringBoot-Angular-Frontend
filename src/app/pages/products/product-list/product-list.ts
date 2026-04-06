@@ -25,6 +25,30 @@ export class ProductList implements OnInit {
   totalItems = 0;
   keyword = '';
   categoryId: number | null = null;
+  isFilterOpen = false;
+  sort = 'newest';
+  colors = [
+    { name: 'Đen', value: 'BLACK', hex: '#000000' },
+    { name: 'Trắng', value: 'WHITE', hex: '#FFFFFF' },
+    { name: 'Xanh dương', value: 'BLUE', hex: '#0000FF' },
+    { name: 'Đỏ', value: 'RED', hex: '#FF0000' }
+  ];
+
+  priceRanges = [
+    { label: 'Dưới 500.000₫', min: 0, max: 500000 },
+    { label: '1.000.000₫ - 2.000.000₫', min: 1000000, max: 2000000 },
+    { label: 'Từ 2.000.000₫', min: 2000000, max: null }
+  ];
+  filters: any = {
+    categoryId: null,
+    brandId: null,
+    minPrice: null,
+    maxPrice: null,
+    color: null,
+    isPromoted: false,
+    isFeatured: false
+  };
+
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {}
 
