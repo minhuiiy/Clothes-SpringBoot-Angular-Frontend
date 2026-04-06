@@ -76,14 +76,16 @@ export class ProductList implements OnInit {
   }
 
   fetchProducts(page: number = 0): void {
+    console.log('Fetching products for page:', page, 'keyword:', this.keyword, 'category:', this.categoryId);
     this.productService.getProducts({ keyword: this.keyword, page, categoryId: this.categoryId ?? undefined }).subscribe({
       next: (data) => {
-        this.products = data.products;
-        this.currentPage = data.currentPage;
-        this.totalPages = data.totalPages;
-        this.totalItems = data.totalItems;
+        console.log('Products API success:', data);
+        this.products = data.products || [];
+        this.currentPage = data.currentPage || 0;
+        this.totalPages = data.totalPages || 0;
+        this.totalItems = data.totalItems || 0;
       },
-      error: (err) => console.error('Error fetching products', err)
+      error: (err) => console.error('Error fetching products API:', err)
     });
   }
 
