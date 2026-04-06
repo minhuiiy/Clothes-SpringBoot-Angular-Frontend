@@ -6,6 +6,7 @@ export interface ICategory {
   id?: number;
   name: string;
   slug?: string;
+  imageUrl?: string;
   description?: string;
   status?: boolean;
   children?: ICategory[];
